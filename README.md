@@ -4,8 +4,8 @@
 
 [![](https://img.shields.io/badge/Author-谢宇轩-orange.svg)]()
 [![](https://img.shields.io/badge/version-1.0.0-brightgreen.svg)](https://github.com/xiejiabin1/sqfx-java)
-[![GitHub stars](https://img.shields.io/github/stars/xiejiabin1/sqfx-java.svg?style=social&label=Stars)](https://github.com/xiejiabin1/sqfx-java)
-[![GitHub forks](https://img.shields.io/github/forks/xiejiabin1/sqfx-java.svg?style=social&label=Fork)](https://github.com/xiejiabin1/sqfx-java)
+[![GitHub stars](https://img.shields.io/github/stars/TuTouMaNongXYX/XwhOA.svg?style=social&label=Stars)](https://github.com/TuTouMaNongXYX/XwhOA)
+[![GitHub forks](https://img.shields.io/github/forks/TuTouMaNongXYX/XwhOA.svg?style=social&label=Fork)](https://github.com/TuTouMaNongXYX/XwhOA)
 
 
 ## 项目介绍
