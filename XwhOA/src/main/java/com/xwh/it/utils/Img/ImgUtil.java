@@ -1,6 +1,5 @@
 package com.xwh.it.utils.Img;
 
-import com.xwh.demo.Exception.MyException;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.imageio.ImageIO;
@@ -26,7 +25,7 @@ public class ImgUtil {
      * @date 2022/6/27 9:05
      * @params
      */
-    public static InputStream getImageCom(MultipartFile file) throws IOException, MyException {
+    public static InputStream getImageCom(MultipartFile file) throws IOException {
         //获取文件输入流
         InputStream inputStream = file.getInputStream();
         try {
@@ -45,7 +44,7 @@ public class ImgUtil {
         } finally {
             inputStream.close();
         }
-        throw new MyException("图片转化异常");
+        return null;
     }
 
 
