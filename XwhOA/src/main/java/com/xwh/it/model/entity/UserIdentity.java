@@ -2,7 +2,9 @@ package com.xwh.it.model.entity;
 
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.baomidou.mybatisplus.annotation.TableField;
+
 import java.io.Serializable;
+
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
@@ -19,7 +21,7 @@ import lombok.EqualsAndHashCode;
 @Data
 @EqualsAndHashCode(callSuper = false)
 @TableName("system_user_identity")
-@ApiModel(value="UserIdentity对象", description="用户身份表")
+@ApiModel(value = "UserIdentity对象", description = "用户身份表")
 public class UserIdentity implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -44,5 +46,8 @@ public class UserIdentity implements Serializable {
     @TableField("state")
     private String state;
 
+    @ApiModelProperty(value = "薪资")
+    @TableField(" salary")
+    private Integer salary;
 
 }
