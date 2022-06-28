@@ -1,6 +1,7 @@
 package com.xwh.it.controller;
 
 
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import org.springframework.web.bind.annotation.RestController;
@@ -13,7 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
  * @author 谢宇轩
  * @since 2022-06-28
  */
-@RestController
+@Controller
 @RequestMapping("/role-auth")
 public class RoleAuthController {
 
