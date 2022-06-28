@@ -16,6 +16,12 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+ /** @description 代码生成器
+ * @author 谢宇轩
+ * @date 2022/6/28 10:56
+ * @params
+ * @return
+ */
 public class CodeGenerator {
     /**
      * <p>
@@ -46,7 +52,7 @@ public class CodeGenerator {
         // 项目根目录
         //String projectPath = System.getProperty("user.dir");
         // 用于多个模块下生成到精确的目录下（我设置在桌面）
-        String projectPath = "F:\\Java-xyx\\xyx";
+        String projectPath = "F:\\XwhOA\\XwhOA";
         // 代码生成目录
         gc.setOutputDir(projectPath + "/src/main/java");
         // 开发人员
@@ -54,7 +60,7 @@ public class CodeGenerator {
         // 是否打开输出目录(默认值：null)
         gc.setOpen(false);
         //实体属性 Swagger2 注解
-        gc.setSwagger2(false);
+        gc.setSwagger2(true);
         // 是否覆盖已有文件(默认值：false)
         gc.setFileOverride(true);
         //去掉接口上的I
@@ -67,7 +73,7 @@ public class CodeGenerator {
         // 数据源配置
         DataSourceConfig dsc = new DataSourceConfig();
         //数据库连接
-        dsc.setUrl("jdbc:mysql://localhost:3306/model?useUnicode=true&useSSL=false&characterEncoding=utf8&serverTimezone=GMT%2B8");
+        dsc.setUrl("jdbc:mysql://localhost:3306/xwhoa?useUnicode=true&useSSL=false&characterEncoding=utf8&serverTimezone=GMT%2B8");
         // 数据库 schema name
         //dsc.setSchemaName("public");
         // 数据库类型
@@ -86,7 +92,7 @@ public class CodeGenerator {
         // 添加这个后 会以一个实体为一个模块 比如user实体会生成user模块 每个模块下都会生成三层
         // pc.setModuleName(scanner("模块名"));
         // 父包名。如果为空，将下面子包名必须写全部， 否则就只需写子包名
-        pc.setParent("com.example.demo");
+        pc.setParent("com.xwh.it");
         // Service包名
         pc.setService("service");
         // Entity包名
@@ -179,7 +185,7 @@ public class CodeGenerator {
         strategy.setControllerMappingHyphenStyle(true);
         // 去掉表前缀
         //strategy.setTablePrefix(pc.getModuleName() + "_");
-        strategy.setTablePrefix(pc.getModuleName() + "_");
+        strategy.setTablePrefix(pc.getModuleName() + "system_");
 
         // 把数据库配置添加到代码生成器主类
         mpg.setStrategy(strategy);
