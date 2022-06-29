@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <title>希望花OA系统</title>
+    <link rel="stylesheet" media="screen" href="../html/static/css/login.css">
+</head>
+
+<body>
+    <!-- particles.js container -->
+    <div id="particles-js" style="display: flex;align-items: center;justify-content: center">
+        <canvas class="particles-js-canvas-el" style="width: 100%; height: 100%;" width="472" height="625"></canvas>
+    </div>
+    <div class="apTitle">希望花OA系统</div>
+    <div class="logcon">
+        <input type="text" id="username" placeholder="账号">
+        <input type="password" id="password" placeholder="密码">
+        <button type="button" id="btnget">登录</button></div>
+
+
+    <!-- scripts -->
+    <script src="../html/static/js/login.js"></script>
+    <script src="../html/static/js/loginApp.js"></script>
+    <script src="../html/static/js/jquery-3.6.0.js"></script>
+    <script src="../html/static/js/jquerysession.js"></script>
+
+
+
+    <!--请求部分-->
+    <!-- post  -->
+    <script>
+        $(function() {
+            $('#btnget').on('click', function() {
+                var username = document.getElementById('username').value;
+                var password = document.getElementById('password').value;
+                if (password == "" || Object.keys(password) < 5) {
+                    alert("密码长度不正确!");
+                    return;
+                }
+                $.ajax({
+                    type: 'POST', //请求的方式
+                    url: 'http://localhost:8888//login', // 请求的URL地址
+                    data: {
+                        username: username,
+                        password: password
+                    }, // 这次请求要携带的数据
+                    error: erryFunction,
+                    success: succFunction
+                })
+            })
+        })
+
+        //请求失败方法
+        function erryFunction() {
+            alert("请求失败!请稍后再试!")
+        }
+        //请求成功方法
+        function succFunction(res) {
+            console.log(res);
+            //判断是否登录成功
+            if (res.code != '200') {
+                alert("登录失败!" + res.message);
+                return;
+            }
+            console.log(res.data["token"]);
+            $.session.set('token', res.data["token"]);
+
+
+            window.location.href = "../html/oa.html";
+        }
+    </script>
+
+
+</body>
+
+</html>

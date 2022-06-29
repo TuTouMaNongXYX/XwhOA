@@ -33,6 +33,11 @@ public class UserInformation implements Serializable {
     @TableField("sex")
     private String sex;
 
+    @ApiModelProperty(value = "姓名")
+    @TableField("name")
+    private String name;
+
+
     @ApiModelProperty(value = "电话")
     @TableField("telephone")
     private String telephone;

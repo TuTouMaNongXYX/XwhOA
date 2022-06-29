@@ -27,8 +27,8 @@ public class UserIdentity implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @ApiModelProperty(value = "用户唯一标识")
-    @TableField("oppo_id")
-    private String oppoId;
+    @TableField("oppn_id")
+    private String oppnid;
 
     @ApiModelProperty(value = "部门code")
     @TableField("department_code")
@@ -44,10 +44,17 @@ public class UserIdentity implements Serializable {
 
     @ApiModelProperty(value = "当前状态（布尔类型）")
     @TableField("state")
-    private String state;
+    private boolean state;
 
     @ApiModelProperty(value = "薪资")
     @TableField(" salary")
     private Integer salary;
 
+    public boolean isState() {
+        return state;
+    }
+
+    public void setState(boolean state) {
+        this.state = state;
+    }
 }

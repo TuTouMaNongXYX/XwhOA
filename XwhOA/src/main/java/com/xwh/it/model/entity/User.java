@@ -38,7 +38,8 @@ public class User implements Serializable {
 
     @ApiModelProperty(value = "加密盐值")
     @TableField("salt")
-    private String salt;
+    private Integer salt;
+
 
 
 }

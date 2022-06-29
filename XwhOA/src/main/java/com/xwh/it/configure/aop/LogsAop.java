@@ -75,7 +75,6 @@ public class LogsAop {
         Class<?> classTarget = point.getTarget().getClass();
         Class<?>[] par = ((MethodSignature) point.getSignature()).getParameterTypes();
         Method objMethod = classTarget.getMethod(point.getSignature().getName(), par);
-        String apiOperationValue = objMethod.getAnnotation(ApiOperation.class).value();
 
 //        日志
         Logs logs = Logs.builder()
@@ -87,7 +86,6 @@ public class LogsAop {
                 .classMethod(String.format("%s.%s", point.getSignature().getDeclaringTypeName(),
                         point.getSignature().getName()))
                 .httpMethod(request.getMethod())
-                .methodName(apiOperationValue)
                 .requestParams(getNameAndValue(point).toString())
                 .result(result.toString().length() > 5000 ? result.toString().substring(0, 5000) : result.toString())
                 .result(result.toString())
