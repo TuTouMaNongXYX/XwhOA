@@ -15,9 +15,11 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 
 /**
  * <p>
@@ -28,7 +30,7 @@ import javax.annotation.Resource;
  * @since 2022-06-28
  */
 @Api(tags = "用户接口")
-@RestController
+@Controller
 public class UserController {
 
     @Resource
@@ -44,16 +46,17 @@ public class UserController {
     @ApiOperationSupport(author = "谢宇轩")
     @ApiOperation(value = "用户登录", httpMethod = "POST")
     @PostMapping("/login")
-    public Restful login(@ApiParam(value = "账号") @RequestParam(value = "username") String username,
-                         @ApiParam(value = "密码") @RequestParam(value = "password") String password) {
+    public String login(@ApiParam(value = "账号") @RequestParam(value = "username") String username,
+                        @ApiParam(value = "密码") @RequestParam(value = "password") String password, Model model, HttpServletRequest request) {
         UserVo userVo = userService.select_loginIs(username, password);
         if (userVo == null) {
-            return Restful.error().message("登录失败");
+            return "login";
         }
         StpUtil.login(userVo.getUser().getOppnId());
-        userVo.setToken(StpUtil.getTokenValue());
-
-        return Restful.ok(userVo).message("登录成功");
+        //密码清楚
+        userVo.getUser().setPassword("");
+        request.getSession().setAttribute("thisUser",userVo);
+        return "forward:/mvc/index";
     }
 
 
@@ -67,59 +70,27 @@ public class UserController {
     @ApiOperationSupport(author = "谢宇轩")
     @ApiOperation(value = "用户注册", httpMethod = "POST")
     @PostMapping("/registered")
-    public Restful registered(@ApiParam(value = "账号") @RequestParam(value = "username") String username,
-                              @ApiParam(value = "密码") @RequestParam(value = "password") String password) {
+    public String registered(@ApiParam(value = "账号") @RequestParam(value = "username") String username,
+                             @ApiParam(value = "密码") @RequestParam(value = "password") String password,
+                             Model model) {
+        //返回前端消息
+        String msg;
         if (SaFoxUtil.isEmpty(username) || SaFoxUtil.isEmpty(password)) {
-            return Restful.error().message("参数错误");
+            msg = "账号密码为空";
         }
         //是否有同账号
         if (userService.select_isUser(username)) {
-            return Restful.error().message("注册失败,已存在该账号");
+            msg = "该账号已注册";
         }
-
         boolean is = userService.addUser(username, password);
         if (is) {
-            return Restful.ok().message("注册成功");
+            msg = "注册成功";
         } else {
-            return Restful.error().message("注册失败");
+            msg = "注册失败";
         }
-    }
+        model.addAttribute("msg", msg);
+        return "login";
 
-
-    /**
-     * @return
-     * @description 账号是否存在
-     * @author 谢宇轩
-     * @date 2022/6/29 8:39
-     * @params
-     */
-    @ApiOperationSupport(author = "谢宇轩")
-    @ApiOperation(value = "账号是否存在", httpMethod = "GET")
-    @GetMapping("/accountVerification")
-    public Restful accountVerification(String username) {
-        //是否有同账号
-        if (userService.select_isUser(username)) {
-            return Restful.error().message("注册失败,已存在该账号");
-        }
-        return Restful.ok().message("可注册");
-    }
-
-
-    /**
-     * @return
-     * @description 判断用户是否登录
-     * @author 谢宇轩
-     * @date 2022/6/29 8:41
-     * @params
-     */
-    @ApiOperationSupport(author = "谢宇轩")
-    @ApiOperation(value = "判断用户是否登录", httpMethod = "GET")
-    @GetMapping("/is")
-    public Restful is() {
-        if (StpUtil.isLogin()) {
-            return Restful.ok(userService.select_ThisUser(StpUtil.getLoginIdAsString())).message("已登录");
-        }
-        return Restful.error().message("未登录");
     }
 
 

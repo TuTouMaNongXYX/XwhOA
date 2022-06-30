@@ -8,10 +8,21 @@ spring:
     username: root
     password: 1234
   mvc:
+    static-path-pattern: /static/**
     #打开隐藏Http请求方式过滤器
     hiddenmethod:
       filter:
         enabled: true
+    #静态资源放行
+
+  thymeleaf:
+    prefix: classpath:/templates/
+    suffix: .html
+    encoding: UTF-8
+    cache: false
+    mode: HTML
+    servlet:
+      content-type: text/html
 
 #服务器配置
 server:

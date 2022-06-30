@@ -7,8 +7,7 @@ import com.baomidou.mybatisplus.annotation.TableField;
 import java.io.Serializable;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
+import lombok.*;
 
 /**
  * <p>
@@ -19,6 +18,9 @@ import lombok.EqualsAndHashCode;
  * @since 2022-06-28
  */
 @Data
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 @EqualsAndHashCode(callSuper = false)
 @TableName("system_menu")
 @ApiModel(value="Menu对象", description="")
@@ -56,7 +58,7 @@ public class Menu implements Serializable {
 
     @ApiModelProperty(value = "菜单状态，1正常，0停用")
     @TableField("menu_status")
-    private Integer menuStatus;
+    private boolean menuStatus;
 
     @ApiModelProperty(value = "图标")
     @TableField("icon")
