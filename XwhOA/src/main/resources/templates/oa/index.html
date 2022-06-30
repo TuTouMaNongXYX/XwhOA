@@ -18,6 +18,7 @@
     <!-- <script type="text/javascript" src="../html/static/js/jquery-3.6.0.js"></script> -->
     <script th:src="@{/static/layui/layui.js}" src="/static/layui/layui.js" charset="utf-8"></script>
     <script th:src="@{/static/js/xadmin.js}" type="text/javascript" src="/static/js/xadmin.js"></script>
+    <script th:src="@{/static/js/kefu.js}" type="text/javascript" src="/static/js/kefu.js"></script>
 </head>
 
 <body>
@@ -44,11 +45,11 @@
             <dl class="layui-nav-child">
                 <!-- 二级菜单 -->
                 <dd><a onclick="x_admin_show('个人信息','http://www.baidu.com')">个人信息</a></dd>
-                <dd><a onclick="x_admin_show('切换帐号','http://www.baidu.com')">切换帐号</a></dd>
+                <dd><a onclick="x_admin_show('GitHub','https://github.com/TuTouMaNongXYX/XwhOA')">GitHub</a></dd>
                 <dd><a href="">退出</a></dd>
             </dl>
         </li>
-        <li class="layui-nav-item to-index"><a href="/">前台首页</a></li>
+        <li class="layui-nav-item to-index"><a href="#">前台首页</a></li>
     </ul>
 
 </div>
@@ -70,10 +71,9 @@
                     <li  th:each="menulast : ${menuVo.menus}">
                         <a th:href="${menulast.menuPath}">
                             <i class="iconfont" th:utext="${menulast.icon}"></i>
-                            <cite th:text="${menulast.menuName}"></cite>
+                            <cite th:utext="${menulast.menuName}"></cite>
                         </a>
                     </li>
-
                 </ul>
             </li>
 
@@ -103,7 +103,22 @@
     <div class="copyright">Copyright ©2022 XWHOA v1.0 All Rights Reserved</div>
 </div>
 <!-- js -->
-
+<!--右侧小导航栏-->
+<script>
+    var kefu = new Kefu({
+        index: "#",
+        tel: "18975150649", //电话号码
+        qq: "3390380439", //在线QQ
+        wechatPerson: {
+            state: true, // true是开启个人微信二维码, false不开启
+            imgURL: "../static/img/wx.jpg"
+        },
+        wechatofficial: {
+            state: false, // true是开启微信公众号二维码, false不开启
+            imgURL: "/static/img/wx.jpg"
+        } //微信公众号
+    });
+</script>
 
 </body>
 
