@@ -1,8 +1,12 @@
 package com.xwh.it.service;
 
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.xwh.it.model.dto.UserVo;
 import com.xwh.it.model.entity.User;
 import com.baomidou.mybatisplus.extension.service.IService;
+
+import java.util.List;
 
 /**
  * <p>
@@ -35,21 +39,33 @@ public interface IUserService extends IService<User> {
     boolean addUser(String username, String password);
 
 
-     /** @description 根据用户名查询是否有数据
+    /**
+     * @return
+     * @description 根据用户名查询是否有数据
      * @author 谢宇轩
      * @date 2022/6/28 18:05
      * @params
-     * @return
      */
-     boolean select_isUser(String username);
+    boolean select_isUser(String username);
 
 
-      /** @description 已登录用户信息
-      * @author 谢宇轩
-      * @date 2022/6/29 10:49
-      * @params
-      * @return
-      */
+    /**
+     * @return
+     * @description 已登录用户信息
+     * @author 谢宇轩
+     * @date 2022/6/29 10:49
+     * @params
+     */
     UserVo select_ThisUser(String oppnId);
+
+
+    /**
+     * @return
+     * @description 分页查询用户信息
+     * @author 谢宇轩
+     * @date 2022/7/1 4:34
+     * @params
+     */
+    List<User> userList();
 
 }

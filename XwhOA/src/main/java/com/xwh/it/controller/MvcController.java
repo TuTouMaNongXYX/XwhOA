@@ -10,6 +10,7 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -24,6 +25,7 @@ import java.util.List;
  **/
 @Api(tags = "请求转发接口")
 @Controller
+@Validated
 @RequestMapping("/mvc")
 public class MvcController {
 
@@ -49,9 +51,23 @@ public class MvcController {
         return "oa/index";
     }
 
+    //我的桌面页面
     @GetMapping("/welcome")
-    public String welcome(){
+    public String welcome() {
         return "oa/welcome";
+    }
+
+
+    /**
+     * @return
+     * @description 注册页面
+     * @author 谢宇轩
+     * @date 2022/7/1 2:46
+     * @params
+     */
+    @GetMapping("/zc")
+    public String zc() {
+        return "zc";
     }
 
 }

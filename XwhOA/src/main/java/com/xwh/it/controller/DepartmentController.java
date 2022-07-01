@@ -3,6 +3,7 @@ package com.xwh.it.controller;
 
 import io.swagger.annotations.Api;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import org.springframework.web.bind.annotation.RestController;
@@ -17,6 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @Api(tags = "部门接口")
 @RestController
+@Validated
 @RequestMapping("/department")
 public class DepartmentController {
 

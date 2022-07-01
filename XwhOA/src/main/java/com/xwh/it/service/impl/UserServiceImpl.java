@@ -3,6 +3,8 @@ package com.xwh.it.service.impl;
 import cn.dev33.satoken.stp.StpUtil;
 import cn.dev33.satoken.util.SaFoxUtil;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.xwh.it.mapper.UserIdentityMapper;
 import com.xwh.it.mapper.UserInformationMapper;
 import com.xwh.it.model.dto.UserVo;
@@ -15,10 +17,12 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.xwh.it.utils.Number.IdUtil;
 import com.xwh.it.utils.encryption.Md5Util;
 import com.xwh.it.utils.encryption.Sha1Util;
+import io.swagger.models.auth.In;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
+import java.util.List;
 import java.util.Random;
 
 /**
@@ -43,7 +47,12 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
     //登录验证
     @Override
     public UserVo select_loginIs(String username, String password) {
-        password = encryption(password, userMapper.GetUserSalt(username));
+        Integer sale = userMapper.GetUserSalt(username);
+        if (sale == null) {
+            return null;
+        }
+        password = encryption(password, sale);
+
         QueryWrapper<User> wrapper = new QueryWrapper<>();
         wrapper.eq("username", username).eq("password", password);
         User user = userMapper.selectOne(wrapper);
@@ -115,7 +124,12 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
         User user = userMapper.selectOne(userWrapper);
         UserIdentity userIdentity = userIdentityMapper.selectOne(userWrapper);
         UserInformation userInformation = informationMapper.selectOne(userWrapper);
-        return new UserVo(user,userInformation,userIdentity);
+        return new UserVo(user, userInformation, userIdentity);
+    }
+
+    @Override
+    public List<User> userList() {
+        return userMapper.selectList(new QueryWrapper<>());
     }
 
 

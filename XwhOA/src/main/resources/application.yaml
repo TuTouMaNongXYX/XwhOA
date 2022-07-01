@@ -33,6 +33,15 @@ server:
   port: 8888
 
 
+#分页工具配置
+pagehelper:
+  #使用的数据库
+  helper-dialect: mysql
+  reasonable: true
+  support-methods-arguments: true
+  params: count=countSql
+
+
 mybatis-plus:
   configuration:
     map-underscore-to-camel-case: true

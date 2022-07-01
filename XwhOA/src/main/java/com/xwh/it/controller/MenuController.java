@@ -11,6 +11,7 @@ import com.xwh.it.utils.Number.IdUtil;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
@@ -25,6 +26,7 @@ import javax.annotation.Resource;
  */
 @Api(tags = "目录接口")
 @RestController
+@Validated
 @RequestMapping("/menu")
 public class MenuController {
 

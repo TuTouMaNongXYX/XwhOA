@@ -68,7 +68,7 @@
                 </a>
                 <!--生成二季目录-->
                 <ul class="sub-menu">
-                    <li  th:each="menulast : ${menuVo.menus}">
+                    <li th:each="menulast : ${menuVo.menus}">
                         <a th:href="${menulast.menuPath}">
                             <i class="iconfont" th:utext="${menulast.icon}"></i>
                             <cite th:utext="${menulast.menuName}"></cite>
@@ -90,7 +90,7 @@
         </ul>
         <div class="layui-tab-content">
             <div class="layui-tab-item layui-show">
-                <iframe th:src="@{/mvc/welcome}"  frameborder="0" scrolling="yes" class="x-iframe"></iframe>
+                <iframe src="/mvc/welcome" frameborder="0" scrolling="yes" class="x-iframe"></iframe>
             </div>
         </div>
     </div>
@@ -118,6 +118,7 @@
             imgURL: "/static/img/wx.jpg"
         } //微信公众号
     });
+
 </script>
 
 </body>
